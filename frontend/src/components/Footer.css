@@ -1,0 +1,40 @@
+.footer {
+    width: 100%;
+    height: clamp(90px, 15vw, 132px);
+
+    margin-top: clamp(40px, 8vw, 86px);
+
+    background-color: #721D08;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 clamp(20px, 5vw, 40px);
+}
+
+/* Contact text */
+.contact-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    
+    font-size: clamp(24px, 4vw, 48px);
+    line-height: 100%;
+
+    color: white;
+
+    margin-right: clamp(100px, 3vw, 250px);
+}
+
+
+.social-links {
+    display: flex;
+    gap: clamp(30px, 5vw, 80px);
+    align-items: center;
+}
+
+.social-icon {
+    height: clamp(28px, 4vw, 50px);
+    width: auto;
+}
