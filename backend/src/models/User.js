@@ -15,6 +15,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    telephone: {
+        type: String,
+        required: true
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    verificationToken: {
+        type: String
+    },
     registeredAt: {
         type: Date,
         default: Date.now
@@ -36,6 +47,5 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-// we made the model and we export it so other files can use it
 module.exports = User;
     

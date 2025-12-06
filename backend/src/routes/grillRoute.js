@@ -1,50 +1,96 @@
 const express = require("express");
 const Grill = require("../models/Grill");
 
-const router = express.Router(); // router allows us to define route handlers separately from index.js
+const router = express.Router();
 
-// fetch all grills from the database
 router.get("/", async (req, res) => {
   try {
-    const grills = await Grill.find();
+    const { sort } = req.query;
+    let sortOption = {};
+
+    if (sort === "likes") {
+        sortOption = { likes: -1 };
+    } else {
+        sortOption = { createdAt: -1 };
+    }
+
+    const grills = await Grill.find().sort(sortOption).populate("createdBy", "username");
     res.json(grills);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// Create a new grill
+router.get("/user/:userId", async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const userGrills = await Grill.find({ createdBy: userId }).sort({ createdAt: -1 });
+        res.json(userGrills);
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
 router.post("/", async (req, res) => {
   try {
-    const {
-        model,
-        fuelType,
-        rating,
-        createdBy,
-        isAvailable,
-        color,
-        comesWithRecipes,
-        recipes,
-      } = req.body;
+    const { name, description, image, createdBy } = req.body;
     
-      const newGrill = new Grill({
-        model,
-        fuelType,
-        rating,
+    if (!name || !description || !createdBy) {
+        return res.status(400).json({ message: "Please fill in all fields" });
+    }
+
+    const newGrill = new Grill({
+        name,
+        description,
+        image, 
         createdBy,
-        isAvailable,
-        color,
-        comesWithRecipes,
-        recipes,
+        likes: 0
     });
 
     const savedGrill = await newGrill.save();
-
     res.status(201).json(savedGrill);
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    console.error("Backend Error:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 });
+
+router.put("/:id/like", async (req, res) => {
+  try {
+      const { id } = req.params;
+      const { userId } = req.body; 
+
+      const grill = await Grill.findById(id);
+      if (!grill) {
+          return res.status(404).json({ message: "Grill not found" });
+      }
+
+      const isLiked = grill.likedBy.includes(userId);
+
+      if (isLiked) {
+          grill.likedBy.pull(userId);
+          grill.likes -= 1;
+      } else {
+          // grill limit
+          const currentLikes = await Grill.countDocuments({ likedBy: userId });
+
+          if (currentLikes >= 5) {
+              return res.status(400).json({ message:
+                "Buna, prietene! Vad ca iti plac gratarele. Pentru a debloca functia 💳premium💳 de like-uri nelimitate, ne poti trimite detaliile tale de la card!💳" });
+          }
+
+          grill.likedBy.push(userId);
+          grill.likes += 1;
+      }
+
+      await grill.save();
+      res.json(grill);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+  }
+});
+
 
 router.delete("/:id", async (req, res) => {
     try {

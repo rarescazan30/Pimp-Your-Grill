@@ -1,44 +1,37 @@
 const mongoose = require("mongoose");
 
 const grillSchema = new mongoose.Schema({
-    model: {
+    name: {
         type: String,
-        required: true,
-        unique: true
-    },
-    fuelType: {
-        type: String,
-        required: true,
-    },
-    rating: {
-        type: Number,
         required: true
     },
+    description: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: false
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    likedBy: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+        required: true
     },
     createdAt: {
         type: Date,
         default: Date.now
-    },
-    isAvailable: {
-        type: Boolean,
-        default: true
-    },
-    color: {
-        type: String
-    },
-    comesWithRecipes: {
-        type: Boolean
-    },
-    recipes: {
-        type: [String]
-    },
-
+    }
 });
 
 const Grill = mongoose.model("Grill", grillSchema);
 
 module.exports = Grill;
-    
