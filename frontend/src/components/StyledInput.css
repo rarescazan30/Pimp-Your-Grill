@@ -1,0 +1,45 @@
+.styled-input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+
+  .input-icon {
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    pointer-events: none;
+
+  }
+  
+  .styled-input {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    
+
+    padding: 12px 0 12px 45px; 
+    
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    outline: none;
+    text-align: left;
+    
+  }
+  
+  .styled-input::placeholder {
+    color: #ffffff;
+    opacity: 1;
+    text-align: left;
+  }
+  
+  .styled-input:focus {
+    outline: none;
+  }

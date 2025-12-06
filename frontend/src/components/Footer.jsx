@@ -1,9 +1,9 @@
 import './Footer.css';
 
-import instagramLogo from '../assets/instaLogo.png';
-import facebookLogo from '../assets/facebookLogo.png'; 
+import instagramLogo from '../assets/instaLogo.svg';
+import facebookLogo from '../assets/facebookLogo.svg'; 
 import youtubeLogo from '../assets/youtubeLogo.png'; 
-import twitchLogo from '../assets/twitchLogo.png'; 
+import twitchLogo from '../assets/twitchLogo.svg'; 
 
 
 export default function Footer() {

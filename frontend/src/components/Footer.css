@@ -14,7 +14,7 @@
     padding: 0 clamp(20px, 5vw, 40px);
 }
 
-/* Contact text */
+
 .contact-text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -37,4 +37,11 @@
 .social-icon {
     height: clamp(28px, 4vw, 50px);
     width: auto;
+
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
 }
