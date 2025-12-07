@@ -38,6 +38,8 @@ export default function Navbar() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  const isAdmin = user && (user.isAdmin === true);
+
   return (
     <nav className="navbar">
       <div className="logo-container">
@@ -53,6 +55,11 @@ export default function Navbar() {
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
         {user ? (
           <>
+            {isAdmin && (
+              <li>
+                <span className="nav-admin-text">ADMIN</span>
+              </li>
+            )}
             <li>
               <Link 
                 to="/profile" 

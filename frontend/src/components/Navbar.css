@@ -20,6 +20,11 @@
   height: 70px;
   cursor: pointer;
   transition: transform 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 .nav-logo:hover {
@@ -53,6 +58,16 @@
 
 .nav-links a.active-link {
   border: 2px solid white;
+}
+
+.nav-admin-text {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  padding: 10px 55px;
+  cursor: default;
+  letter-spacing: 1px;
 }
 
 .hamburger {
@@ -97,7 +112,7 @@
   }
 
   .nav-links.active {
-    height: 20%;
+    height: auto;
     max-height: 800px;
     opacity: 1;
     padding: 30px;
@@ -111,5 +126,15 @@
     text-align: left;
     border-radius: 12px;
     margin: 5px 0;
+  }
+
+  .nav-admin-text {
+    font-size: 20px;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: left;
+    margin: 5px 0;
+    color: white;
+    display: block;
   }
 }

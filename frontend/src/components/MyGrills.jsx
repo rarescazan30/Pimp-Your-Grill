@@ -58,6 +58,9 @@ export default function MyGrills() {
         const updatedGrill = await response.json();
         setMyGrills(prev => prev.map(g => g._id === grillId ? updatedGrill : g));
         if (selectedGrill?._id === grillId) setSelectedGrill(prev => ({ ...prev, ...updatedGrill }));
+      } else {
+        const data = await response.json();
+        alert(data.message || "Something went wrong");
       }
     } catch (error) { console.error(error); }
   };
