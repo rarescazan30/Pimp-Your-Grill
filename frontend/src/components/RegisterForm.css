@@ -10,7 +10,7 @@
     box-sizing: border-box;
     z-index: 10;
 }
-  
+
 .rectangle {
     width: 703px;
     height: 793px;
@@ -18,14 +18,16 @@
     border-radius: 25px;
     max-width: 100%;
     max-height: 90vh;
-    margin-bottom: 10px;
-    margin-bottom: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0 10px 30px 10px;
     overflow: hidden;
     box-shadow:
-    0 5px 10px rgba(0, 0, 0, 0.30),
-    0 10px 15px rgba(0, 0, 0, 0.22);
+        0 5px 10px rgba(0, 0, 0, 0.30),
+        0 10px 15px rgba(0, 0, 0, 0.22);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    box-sizing: border-box;
 }
 
 .form-content {
@@ -33,15 +35,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10%;
-    padding-bottom: 20px;
     gap: 25px;
+    padding-bottom: 20px;
     box-sizing: border-box;
     margin-top: 0;
 }
 
-
-.register-header{
+.register-header {
     color: #ffffff;
     font-family: 'Montserrat', sans-serif; 
     font-weight: 700;
@@ -49,40 +49,32 @@
     line-height: 100%;
     text-align: left;    
     margin: 0 0 50px 0;
-    padding: 0px;
-  }
-
+    padding: 0;
+}
 
 .new-submit-btn {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-style: bold;
     font-size: 36px;
     line-height: 100%;
-    letter-spacing: 0%;
     text-align: center;
-    vertical-align: middle;
     text-transform: capitalize;
-
     min-width: 300px;
+    max-width: 90%;
     min-height: 85px;
     padding: 20px 40px;
-    margin-top: 40px;
-    margin-left: 70px;
-    margin-right: 70px;
+    margin: 40px auto 0 auto;
     background-color: #009C41;
     color: #ffffff;
     border: none;
     border-radius: 12px;
     cursor: pointer;
     overflow: hidden;
-
     box-shadow: 
         0 3px 10px rgba(0, 0, 0, 0.20), 
         0 5px 15px rgba(0, 0, 0, 0.10);
     transition: all 0.3s ease;
 }
-
 
 .new-submit-btn:hover {
     background-color: #1e7a1e;
@@ -90,4 +82,39 @@
         0 8px 18px rgba(0, 0, 0, 0.35), 
         0 12px 25px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .container {
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        top: 0;
+        padding: 10px;
+    }
+
+    .rectangle {
+        width: 100%;
+        max-width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .form-content {
+        gap: 20px;
+        padding-bottom: 15px;
+    }
+
+    .register-header {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .new-submit-btn {
+        font-size: 28px;
+        min-height: 65px;
+        padding: 12px 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

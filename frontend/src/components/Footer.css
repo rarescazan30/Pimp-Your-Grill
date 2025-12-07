@@ -1,47 +1,86 @@
 .footer {
     width: 100%;
     height: clamp(90px, 15vw, 132px);
-
     margin-top: clamp(40px, 8vw, 86px);
-
     background-color: #721D08;
     color: white;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 0 clamp(20px, 5vw, 40px);
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 5vw, 80px);
+    flex-wrap: wrap;
+}
 
 .contact-text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    
-    font-size: clamp(24px, 4vw, 48px);
-    line-height: 100%;
-
+    font-size: clamp(18px, 3vw, 42px);
+    line-height: 1;
     color: white;
-
-    margin-right: clamp(100px, 3vw, 250px);
+    margin: 0;
+    white-space: nowrap;
 }
-
 
 .social-links {
     display: flex;
-    gap: clamp(30px, 5vw, 80px);
+    gap: clamp(20px, 5vw, 80px);
     align-items: center;
 }
 
 .social-icon {
     height: clamp(28px, 4vw, 50px);
     width: auto;
-
     transition: transform 0.3s ease;
     cursor: pointer;
 }
 
 .social-icon:hover {
     transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .footer-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .contact-text {
+        font-size: clamp(16px, 4vw, 32px);
+    }
+
+    .social-links {
+        gap: clamp(15px, 4vw, 50px);
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-text {
+        font-size: clamp(14px, 5vw, 28px);
+    }
+
+    .social-links {
+        gap: clamp(10px, 4vw, 40px);
+    }
+
+    .social-icon {
+        height: clamp(24px, 6vw, 40px);
+    }
 }

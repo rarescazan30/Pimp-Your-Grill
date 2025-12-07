@@ -16,11 +16,9 @@
     height: 768px;
     background-color: #D9D9D9;
     border-radius: 13px;
-    
     position: relative;
     display: flex;
     overflow: visible;
-    
     max-width: 95vw;
     max-height: 90vh;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
@@ -66,10 +64,13 @@
 }
 
 .modal-title {
-    font-size: 48px;
+    font-size: clamp(26px, 4vw, 42px);
     font-weight: 700;
     margin-bottom: 10px;
     margin-top: 20px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    max-width: 65%; 
 }
 
 .modal-pimp-container {
@@ -79,7 +80,7 @@
 }
 
 .pimp-label {
-    font-size: 48px;
+    font-size: clamp(26px, 4vw, 42px);
     font-weight: 700;
     color: black;
 }
@@ -90,12 +91,14 @@
     color: black;
 }
 
-
 .pimp-username {
-    font-size: 48px;
+    font-size: clamp(26px, 4vw, 42px);
     font-weight: 700;
     color: black;
     line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: break-word;
+    max-width: 65%;  
 }
 
 .grill-stats-row {
@@ -135,14 +138,12 @@
     border-radius: 15px;
     border: none;
     cursor: pointer;
-    
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 28px;
     line-height: 100%;
     text-align: center;
     color: #FFFFFF;
-    
     transition: transform 0.2s ease;
     z-index: 50;
 }
@@ -152,14 +153,14 @@
 }
 
 .edit-btn {
-    top: 187px;
-    left: 1325px;
+    top: 120px;
+    left: 80%;
     background-color: #AB8826;
 }
 
 .delete-btn {
-    top: 259px;
-    left: 1325px;
+    top: 190px;
+    left: 80%;
     background-color: #AB2626;
 }
 
@@ -169,4 +170,93 @@
     line-height: 1.6;
     white-space: pre-wrap;
     max-width: 80%;
+}
+
+@media (max-width: 1300px) {
+    .modal-content {
+        flex-direction: column;
+        width: 95vw;
+        height: auto;
+        max-height: 95vh;
+    }
+
+    .modal-left-col {
+        width: 100%;
+        height: auto;
+        max-height: 40vh;
+        border-radius: 13px 13px 0 0;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        position: relative;
+        top: unset;
+        left: unset;
+        width: 90%;
+        max-width: 300px;
+        margin-top: 15px;
+        height: 55px;
+        font-size: 24px;
+        border-radius: 12px;
+    }
+
+    .modal-right-col {
+        padding: 30px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .modal-description-box {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-title {
+        font-size: clamp(26px, 5vw, 42px);
+    }
+
+    .pimp-label,
+    .pimp-username {
+        font-size: clamp(26px, 5vw, 42px);
+    }
+
+    .modal-right-col {
+        padding: 20px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        width: 100%;
+        max-width: none;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .modal-description-box {
+        font-size: 18px;
+    }
+
+    .like-icon-in-modal {
+        width: 55px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-left-col {
+        max-height: 28vh;
+    }
+
+    .modal-title {
+        font-size: clamp(22px, 6vw, 42px);
+    }
+
+    .pimp-username {
+        font-size: clamp(22px, 6vw, 42px);
+    }
+
+    .modal-description-box {
+        font-size: 16px;
+    }
 }

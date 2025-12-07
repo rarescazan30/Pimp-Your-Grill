@@ -1,6 +1,6 @@
 .profile-top-section {
     position: relative;
-    margin-top: 150px; 
+    margin-top: 150px;
     z-index: 10;
     display: flex;
     justify-content: center;
@@ -11,10 +11,12 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .profile-rectangle {
     width: 600px;
+    max-width: 100%;
     height: 300px;
     background: #721D08;
     border-radius: 25px;
@@ -22,6 +24,11 @@
         0 5px 10px rgba(0, 0, 0, 0.30),
         0 10px 15px rgba(0, 0, 0, 0.22);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    box-sizing: border-box;
 }
 
 .profile-content {
@@ -29,12 +36,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10%;
     gap: 40px;
 }
 
 .read-only-input-wrapper {
     pointer-events: none;
+    width: 100%;
 }
 
 .post-grill-btn {
@@ -44,25 +51,25 @@
     line-height: 100%;
     text-align: center;
     text-transform: capitalize;
-
     width: 400px;
-    height: 100px; 
+    max-width: 90%;
+    height: 100px;
     background-color: #26AB5D;
     color: #ffffff;
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    
-    box-shadow: 
-        0 3px 10px rgba(0, 0, 0, 0.20), 
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.20),
         0 5px 15px rgba(0, 0, 0, 0.10);
     transition: all 0.3s ease;
+    margin: 0 auto;
 }
 
 .post-grill-btn:hover {
     background-color: #26AB5D;
-    box-shadow: 
-        0 8px 18px rgba(0, 0, 0, 0.35), 
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.35),
         0 12px 25px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -71,5 +78,27 @@
     .profile-top-section {
         flex-direction: column-reverse;
         gap: 30px;
+        margin-top: 100px;
+        align-items: center;
+    }
+
+    .profile-rectangle {
+        width: 100%;
+        max-width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .profile-content {
+        gap: 20px;
+        align-items: center;
+    }
+
+    .post-grill-btn {
+        font-size: 28px;
+        height: 80px;
+        width: 300px;
+        max-width: 350px;
+        align-items: center;
     }
 }

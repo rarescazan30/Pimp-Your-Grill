@@ -23,7 +23,7 @@
     color: black;
     outline: none;
     box-sizing: border-box;
-    
+    transition: border-color 0.2s ease;
 }
 
 .search-input::placeholder {
@@ -45,5 +45,22 @@
 
 .search-input:focus {
     border-color: #333;
+}
 
+@media (max-width: 600px) {
+    .search-bar-container {
+        padding: 10px 20px;
+    }
+
+    .search-input {
+        height: 50px;
+        font-size: 18px;
+        padding: 0 50px 0 20px;
+    }
+
+    .search-icon {
+        width: 24px;
+        height: 24px;
+        right: 15px;
+    }
 }

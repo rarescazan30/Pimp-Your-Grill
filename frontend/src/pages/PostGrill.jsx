@@ -4,7 +4,7 @@ import PostGrillForm from '../components/PostGrillForm';
 
 function PostGrill() {
   return (
-    <div className="register-page-container">
+    <div className="register-page-container post-grill-page">
         <PostGrillForm />
         <HeroNoText />
     </div>

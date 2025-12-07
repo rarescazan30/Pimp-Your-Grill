@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './ScrollToTop.css';
-// 👇 Import the SVG
 import arrowIcon from '../assets/ScrollToTopIcon.svg'; 
 
 export default function ScrollToTop() {

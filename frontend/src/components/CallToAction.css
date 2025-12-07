@@ -1,25 +1,47 @@
 .cta-banner {
-    background-color: #721D08;
-    width: 100%;
-    height: 182px;
-    color: white;
-    
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    
-    margin-top: 73px; 
+  background-color: #721D08;
+  width: 100%;
+  height: auto;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  margin-top: 73px;
+  box-sizing: border-box;
+}
+
+.cta-banner p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: clamp(24px, 4vw, 48px);
+  line-height: 1.2;
+  text-align: center;
+  max-width: 1316px;
+  margin: 0;
+  padding: 0 10px;
+  word-wrap: break-word; 
+}
+
+
+@media (max-width: 768px) {
+  .cta-banner {
+      padding: 15px;
   }
-  
+
   .cta-banner p {
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 100%;
-    text-align: center;
-    
-    max-width: 1316px; 
-    
-    margin: 0; 
-    padding: 0 20px;
+      font-size: clamp(20px, 5vw, 36px);
   }
+}
+
+@media (max-width: 480px) {
+  .cta-banner {
+      padding: 10px;
+  }
+
+  .cta-banner p {
+      font-size: clamp(18px, 6vw, 28px);
+  }
+}

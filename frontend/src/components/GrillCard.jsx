@@ -1,5 +1,5 @@
 import React from 'react';
-import './GrillCard.css'; // We will create this or reuse styles
+import './GrillCard.css'; 
 import placeholderImg from '../assets/placeholderGrill.svg'; 
 import likedMic from '../assets/likedMic.svg';
 import unlikedMic from '../assets/unlikedMic.svg';

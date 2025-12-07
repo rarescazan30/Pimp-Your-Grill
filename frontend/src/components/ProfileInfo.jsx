@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAuth } from '../AuthContext';
-// 👇 1. Import useNavigate
 import { useNavigate } from 'react-router-dom';
 import StyledInput from './StyledInput';
 import './ProfileInfo.css';

@@ -1,25 +1,24 @@
 .showcase-container {
-    /* Use 98% width to force a small gap on the screen edges */
-    width: 98%; 
+    width: 98%;
     max-width: 1700px;
     height: auto;
-    
-    margin: 0 auto;
-    margin-top: 86px;
-    
-    background-color: white; 
-    
-    
+    margin: 86px auto 0 auto;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
-    
 }
-  
+
+.peter-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .peter-image {
     max-width: 100%;
     height: auto;
-    
     object-fit: contain;
 }

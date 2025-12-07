@@ -9,15 +9,16 @@
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
   margin-bottom: 30px;
-
   box-shadow:
-  0 5px 10px rgba(0, 0, 0, 0.30),
-  0 10px 15px rgba(0, 0, 0, 0.22);
+    0 5px 10px rgba(0, 0, 0, 0.30),
+    0 10px 15px rgba(0, 0, 0, 0.22);
+  position: relative;
+  z-index: 1000;
 }
 
 .nav-logo {
   height: 70px;
-  cursor: pointer; 
+  cursor: pointer;
   transition: transform 0.2s ease;
 }
 
@@ -30,6 +31,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
 .nav-links a {
@@ -38,11 +40,9 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 24px;
-  line-height: 100%;
-  letter-spacing: 0%;
   cursor: pointer;
-  padding: 10px 15px; 
-  /* border-radius: 12px; */
+  padding: 10px 15px;
+  border-radius: 12px;
   border: 2px solid transparent;
   transition: all 0.3s ease;
 }
@@ -51,7 +51,65 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-
 .nav-links a.active-link {
   border: 2px solid white;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1010;
+}
+
+.hamburger div {
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 97px;
+    right: 0;
+    background-color: #7B1E05;
+    flex-direction: column;
+    width: 220px;
+    max-height: 0;
+    overflow: hidden;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.35),
+      0 12px 25px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    height: 20%;
+    max-height: 800px;
+    opacity: 1;
+    padding: 30px;
+    gap: 30px;
+  }
+
+  .nav-links a {
+    font-size: 20px;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: left;
+    border-radius: 12px;
+    margin: 5px 0;
+  }
 }

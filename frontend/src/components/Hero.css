@@ -1,54 +1,88 @@
 .hero {
     width: 100%;
-    
-    max-width: 1856px; 
-    height: 840px;
-
-    margin: 88px auto 50px auto; 
-    
+    max-width: 1856px;
+    height: clamp(400px, 50vw, 840px);
+    margin: 88px auto 50px auto;
     background-color: white;
-
-
-    background-image: url('../assets/homepageGrouped.png'); 
+    background-image: url('../assets/homepageGrouped.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
 .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    gap: clamp(10px, 2vw, 40px);
 }
 
 .hero-title-main {
     display: flex;
     flex-direction: column;
-    
     align-items: center;
-    line-height: 100%;
-    margin-top: -15px;
+    line-height: 1;
+    gap: clamp(5px, 1vw, 20px);
 }
 
 .pimp-your-text {
     font-family: 'Enriqueta', serif;
     font-weight: 400;
-    font-size: 128px;
+    font-size: clamp(40px, 10vw, 128px);
     color: #333;
-    margin-bottom: 125px;
-    margin-top: clamp(-220px, -12vw, -80px);
-    
+    margin: 0;
 }
 
 .grill-text {
     font-family: 'Faster One', cursive;
     font-weight: 400;
-    font-size: 128px;
-    color: #721D08; 
-    text-align: center;
     font-size: clamp(48px, 8vw, 128px);
+    color: #721D08;
+    text-align: center;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: clamp(400px, 40vw, 600px);
+        margin: 50px auto 20px auto;
+        padding: 0 10px;
+    }
+
+    .hero-content {
+        gap: 20px;
+    }
+
+    .pimp-your-text {
+        font-size: clamp(28px, 8vw, 80px);
+    }
+
+    .grill-text {
+        font-size: clamp(32px, 10vw, 90px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        margin: 30px auto 10px auto;
+        padding: 0 5px;
+    }
+
+    .hero-content {
+        gap: 15px;
+    }
+
+    .pimp-your-text {
+        font-size: clamp(20px, 10vw, 60px);
+    }
+
+    .grill-text {
+        font-size: clamp(24px, 12vw, 70px);
+    }
 }
