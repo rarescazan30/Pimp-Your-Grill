@@ -1,13 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import './PostGrillForm.css';
 import StyledInput from './StyledInput'; 
 import addPhotoIcon from '../assets/addPhotoIcon.svg';
 
-export default function PostGrillForm() {
+export default function EditGrillForm() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { id } = useParams();
   const fileInputRef = useRef(null);
 
   const [formData, setFormData] = useState({
@@ -15,6 +16,34 @@ export default function PostGrillForm() {
     description: '',
     image: ''
   });
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchGrill = async () => {
+        try {
+            const response = await fetch(`http://localhost:5001/api/grills/${id}`);
+            const data = await response.json();
+            
+            if (response.ok) {
+                setFormData({
+                    grillName: data.name,
+                    description: data.description,
+                    image: data.image || ''
+                });
+            } else {
+                alert("Could not load grill details.");
+                navigate('/profile');
+            }
+        } catch (error) {
+            console.error("Error loading grill:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchGrill();
+  }, [id, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,75 +53,58 @@ export default function PostGrillForm() {
     }));
   };
 
-
   const handleFileProcess = (file) => {
     if (!file) return;
-    
     if (!file.type.startsWith('image/')) {
         alert("Please upload an image file.");
         return;
     }
-
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    
     reader.onload = () => {
         setFormData(prev => ({ ...prev, image: reader.result }));
     };
-    
-    reader.onerror = error => console.error("Error reading file:", error);
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    handleFileProcess(file);
+    handleFileProcess(e.dataTransfer.files[0]);
   };
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  const handleFileSelect = (e) => {
-    const file = e.target.files[0];
-    handleFileProcess(file);
-  };
+  const handleDragOver = (e) => e.preventDefault();
+  const handleFileSelect = (e) => handleFileProcess(e.target.files[0]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user) {
-        alert("You must be logged in to post a grill!");
-        return;
-    }
+    if (!user) return;
 
     try {
-        const response = await fetch('http://localhost:5001/api/grills', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        const response = await fetch(`http://localhost:5001/api/grills/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: formData.grillName,
                 description: formData.description,
-                createdBy: user._id,
-                image: formData.image 
+                image: formData.image,
+                userId: user._id
             }),
         });
 
-        const data = await response.json();
-
         if (response.ok) {
-            alert("Grill posted successfully!");
+            alert("Grill updated successfully!");
             navigate('/profile');
         } else {
-            alert(data.message || "Failed to post grill");
+            const data = await response.json();
+            alert(data.message || "Failed to update grill");
         }
     } catch (error) {
-        console.error("Error posting grill:", error);
-        alert("Server error. Please try again later.");
+        console.error("Error updating grill:", error);
+        alert("Server error.");
     }
   };
+
+  if (loading) return <div style={{color:'white', textAlign:'center', marginTop:'200px'}}>Loading...</div>;
 
   return (
     <div className="post-grill-container">
@@ -133,17 +145,17 @@ export default function PostGrillForm() {
                 onClick={() => fileInputRef.current.click()}
             >
                 {formData.image ? (
-                    <span className="upload-text" style={{color: '#90EE90'}}>Image Added! ✓</span>
+                    <span className="upload-text" style={{color: '#90EE90'}}>New Image Ready! ✓</span>
                 ) : (
                     <>
                         <img src={addPhotoIcon} alt="Add" className="upload-icon-img" />
-                        <span className="upload-text">Upload photo</span>
+                        <span className="upload-text">Change photo</span>
                     </>
                 )}
             </div>
 
             <button type="submit" className="post-grill-submit-btn">
-              Post this grill!
+              Update Grill
             </button>
 
         </form>

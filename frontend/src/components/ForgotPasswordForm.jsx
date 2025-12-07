@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './ForgotPasswordForm.css';
 import StyledInput from './StyledInput'; 
-
 import mailIcon from '../assets/mail.svg';
 
 export default function ForgotPasswordForm() {
@@ -11,21 +10,29 @@ export default function ForgotPasswordForm() {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Reset Password Email Sent to:', email);
-    // TODO : Password reset logic
+    try {
+        const response = await fetch('http://localhost:5001/api/users/forgot-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+        
+        const data = await response.json();
+        alert(data.message);
+        
+    } catch (error) {
+        alert("Error sending request.");
+    }
   };
 
   return (
     <div className="forgot-container">
       <div className="forgot-rectangle">
-        
         <form onSubmit={handleSubmit} className="forgot-form-content">
             <div className="forgot-header">
-                <h2>
-                  Forgot password
-                </h2>
+                <h2>Resetare parolă</h2>
             </div>
             
             <StyledInput
@@ -39,11 +46,9 @@ export default function ForgotPasswordForm() {
             />
 
             <button type="submit" className="forgot-submit-btn">
-              Send
+              Send Link
             </button>
-
         </form>
-
       </div>
     </div>
   );

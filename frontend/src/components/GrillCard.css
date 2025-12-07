@@ -1,56 +1,15 @@
-.my-grills-wrapper {
-    position: relative;
-    z-index: 10; 
-    width: 90%; 
-    max-width: 1600px;
-    min-height: 400px;
-    background: #903019;
-    border-radius: 25px;
-    margin: 50px auto; 
-    padding: 40px;
-    box-shadow:
-        0 5px 10px rgba(0, 0, 0, 0.30),
-        0 10px 15px rgba(0, 0, 0, 0.22);
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.my-grills-header h2 {
-    color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    margin-bottom: 40px;
-}
-
-.grills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    gap: 40px;
-    width: 100%;
-    justify-items: center;
-}
-
 .grill-card {
     width: 360px;
     height: 625.6px;
-    
     background-color: #D9D9D9;
     border-radius: 13px;
     border: 2px solid black; 
-    
     display: flex;
     flex-direction: column;
-    
-    /* Removed padding from parent to let image touch edges */
     padding: 5px 0; 
-    
     box-sizing: border-box;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -66,8 +25,6 @@
     font-size: 26px;
     font-weight: 600;
     text-align: left;
-    
-    /* 👇 Added padding here for alignment */
     padding: 0 25px;
 }
 
@@ -75,9 +32,8 @@
     width: 100%;
     height: 354px;
     background-color: rgba(0,0,0,0.1);
+    border-radius: 0;
     margin-bottom: 15px;
-    align-self: center;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,8 +51,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
-    /* 👇 ADDED EXTRA PADDING HERE (25px) */
     padding: 0 25px; 
 }
 
@@ -107,16 +61,22 @@
     margin: 0;
 }
 
-.grill-stats-row {
+.likes-wrapper {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     margin-top: 5px;
+}
+
+.like-icon {
+    width: 80px;  
+    height: 80px; 
+    cursor: pointer;
     transition: transform 0.1s ease;
 }
 
-.grill-stats-row:active {
-    transform: scale(1.05);
+.like-icon:active {
+    transform: scale(1.2); 
 }
 
 .like-number {
@@ -132,18 +92,4 @@
     opacity: 1;
     overflow-wrap: break-word; 
     word-wrap: break-word;
-}
-
-.no-grills-text {
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    grid-column: span 3;
-    text-align: center;
-}
-
-@media (max-width: 1200px) {
-    .grills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    }
 }
