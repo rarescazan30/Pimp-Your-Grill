@@ -2,7 +2,6 @@ const express = require("express");
 const connectDB = require("./db");
 const cors = require("cors");
 const dotenv = require("dotenv");
-// 👇 THIS WAS MISSING
 const mongoose = require("mongoose"); 
 
 dotenv.config();
@@ -14,7 +13,9 @@ const userRoutes = require("./routes/userRoute");
 const grillRoutes = require("./routes/grillRoute");
 
 app.use(cors());
-app.use(express.json()); 
+
+app.use(express.json({ limit: '50mb' })); 
+
 app.use("/api/users", userRoutes);
 app.use("/api/grills", grillRoutes);
 

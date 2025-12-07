@@ -4,22 +4,31 @@ const Grill = require("../models/Grill");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  try {
-    const { sort } = req.query;
-    let sortOption = {};
-
-    if (sort === "likes") {
-        sortOption = { likes: -1 };
-    } else {
-        sortOption = { createdAt: -1 };
+    try {
+      const { sort, search } = req.query;
+      
+      let dbQuery = {};
+      
+      if (search) {
+          dbQuery.name = { $regex: search, $options: 'i' };
+      }
+  
+      let sortOption = {};
+      if (sort === "likes") {
+          sortOption = { likes: -1 };
+      } else {
+          sortOption = { createdAt: -1 };
+      }
+  
+      const grills = await Grill.find(dbQuery)
+                               .sort(sortOption)
+                               .populate("createdBy", "username");
+      
+      res.json(grills);
+    } catch (error) {
+      res.status(500).json({ message: "Server error" });
     }
-
-    const grills = await Grill.find().sort(sortOption).populate("createdBy", "username");
-    res.json(grills);
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
-});
+  });
 
 router.get("/user/:userId", async (req, res) => {
     try {
@@ -100,6 +109,37 @@ router.delete("/:id", async (req, res) => {
             return res.status(404).json({ message: "Grill not found" });
         }
         res.json({ message: "Grill deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+router.put("/:id", async (req, res) => {
+    try {
+        const { name, description, image } = req.body;
+        const updatedGrill = await Grill.findByIdAndUpdate(
+            req.params.id,
+            { name, description, image }, 
+            { new: true } 
+        );
+
+        if (!updatedGrill) {
+            return res.status(404).json({ message: "Grill not found" });
+        }
+
+        res.json(updatedGrill);
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+router.get("/:id", async (req, res) => {
+    try {
+        const grill = await Grill.findById(req.params.id);
+        if (!grill) {
+            return res.status(404).json({ message: "Grill not found" });
+        }
+        res.json(grill);
     } catch (error) {
         res.status(500).json({ message: "Server error" });
     }
